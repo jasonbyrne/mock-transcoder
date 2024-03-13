@@ -41,7 +41,7 @@ export class QueueManager {
         });
       }
       video.transcode();
-    }, 5000);
+    }, 1000);
   }
 
   public addToQueue(settings: VideoOpts): Video {
