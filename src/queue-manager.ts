@@ -34,10 +34,14 @@ export class QueueManager {
     setInterval(() => {
       if (this.isTranscoding) return;
       const video = this.findNextVideo();
-      if (video) {
-        video.transcode();
+      if (!video) {
+        return this.addToLog({
+          timestamp: Date.now(),
+          message: "No videos to transcode",
+        });
       }
-    }, 1000);
+      video.transcode();
+    }, 5000);
   }
 
   public addToQueue(settings: VideoOpts): Video {

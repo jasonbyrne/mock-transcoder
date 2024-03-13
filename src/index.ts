@@ -24,11 +24,12 @@ import { VideoOpts } from "./types/video-options";
 
   jobQueue.subscribeToLogs((update) => {
     const dateFromUnix = new Date(update.timestamp);
-    console.log(
-      `${dateFromUnix.toISOString()} - Job ${update.videoId} (${
-        update.overallStatus
-      }) - Rendition ${update.renditionId} (${update.renditionStatus})`
-    );
+    const parts: string[] = [dateFromUnix.toISOString()];
+    if (update.videoId)
+      parts.push(`Video ${update.videoId} (${update.overallStatus})`);
+    if (update.renditionId)
+      parts.push(`Rendition ${update.renditionId} (${update.renditionStatus})`);
+    console.log(parts.join(" - "), update.message);
   });
 
   videos.forEach((videoOpts) => {

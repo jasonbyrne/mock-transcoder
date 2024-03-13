@@ -43,6 +43,15 @@ export class Video {
     });
   }
 
+  private log(message: string): void {
+    this.queueManager.addToLog({
+      videoId: this.id,
+      overallStatus: this.status,
+      timestamp: Date.now(),
+      message,
+    });
+  }
+
   public transcode() {
     if (this.status === "TRANSCODING") {
       throw new Error("Video is already transcoding");
@@ -50,24 +59,9 @@ export class Video {
     if (this.status === "COMPLETE") {
       throw new Error("Video has already been transcoded");
     }
-    this.queueManager.addToLog({
-      videoId: this.id,
-      overallStatus: this.status,
-      timestamp: Date.now(),
-      message: "Starting transcode",
-    });
+    this.log(`Transcoding starting (${this.renditions.length} renditions)`);
     return Promise.all(
       this.renditions.map((rendition) => rendition.transcode())
-    );
-  }
-
-  public getFailedRenditions() {
-    return this.renditions.filter((rendition) => rendition.status === "ERROR");
-  }
-
-  public getCompletedRenditions() {
-    return this.renditions.filter(
-      (rendition) => rendition.status === "COMPLETE"
     );
   }
 }
