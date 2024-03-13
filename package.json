@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jasonbyrne/mock-transcoder/issues"
   },
-  "homepage": "https://github.com/jasonbyrne/mock-transcoder#readme"
+  "homepage": "https://github.com/jasonbyrne/mock-transcoder#readme",
+  "devDependencies": {
+    "@types/node": "^20.11.27"
+  }
 }
