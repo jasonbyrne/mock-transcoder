@@ -1,0 +1,19 @@
+{
+  "name": "mock-transcoder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasonbyrne/mock-transcoder.git"
+  },
+  "author": "Jason Byrne",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jasonbyrne/mock-transcoder/issues"
+  },
+  "homepage": "https://github.com/jasonbyrne/mock-transcoder#readme"
+}
